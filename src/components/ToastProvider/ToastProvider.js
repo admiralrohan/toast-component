@@ -10,8 +10,13 @@ function ToastProvider({ children }) {
     const newToasts = toasts.filter((toast) => toast.id !== id);
     setToasts(newToasts);
   };
-  const createToast = (message, variant) => {
-    const newToast = { id: crypto.randomUUID(), message, variant };
+  const createToast = (message, variant, timeout = null) => {
+    const newToast = {
+      id: crypto.randomUUID(),
+      message,
+      variant,
+      timeout,
+    };
     setToasts([...toasts, newToast]);
   };
 

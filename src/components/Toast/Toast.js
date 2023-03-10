@@ -19,9 +19,15 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ id, children, variant }) {
+function Toast({ id, children, variant, timeout }) {
   const Icon = ICONS_BY_VARIANT[variant];
   const { handleDismiss } = React.useContext(ToastContext);
+
+  if (timeout) {
+    setTimeout(() => {
+      handleDismiss(id);
+    }, timeout);
+  }
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
